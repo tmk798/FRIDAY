@@ -16,15 +16,15 @@ let cameraStream = null; // Track camera stream
 
 // Friday commands initialization
 [
-    "hello friday", "wake up", "open youtube", "search <something> on youtube", "play <song/video name>",
-    "open google", "search for <query>", "open instagram", "open my instagram profile", "open instagram profile",
-    "open linkedin", "open my linkedin profile", "open linkedin profile", "open github", "open my github profile",
-    "open github profile", "open leetcode", "open geeksforgeeks", "open chatgpt", "open chat gpt",
-    "open my website", "open whatsapp", "what are your commands", "close this", "what is the weather or temperature",
-    "show the full weather report", "are you there", "shut down", "open my canva designs", "open canva",
-    "current charge", "charging status", "current time", "connection status", "who are you", "change my information",
-    "open calendar", "close all tabs", "top headlines", "news regarding <topic>", "open camera", "close camera",
-    "calculate <expression>", "shutdown friday" ,"activate static mode" // Added new commands
+  "hello friday", "wake up", "open youtube", "search <something> on youtube", "play <song/video name>",
+  "open google", "search for <query>", "open instagram", "open my instagram profile", "open instagram profile",
+  "open linkedin", "open my linkedin profile", "open linkedin profile", "open github", "open my github profile",
+  "open github profile", "open leetcode", "open geeksforgeeks", "open chatgpt", "open chat gpt",
+  "open my website", "open whatsapp", "what are your commands", "close this", "what is the weather or temperature",
+  "show the full weather report", "are you there", "shut down", "open my canva designs", "open canva",
+  "current charge", "charging status", "current time", "connection status", "who are you", "change my information",
+  "open calendar", "close all tabs", "top headlines", "news regarding <topic>", "open camera", "close camera",
+  "calculate <expression>", "shutdown friday", "activate static mode" // Added new commands
 ].forEach(cmd => fridayComs.push(cmd));
 
 
@@ -245,11 +245,11 @@ function userInfo() {
     setup.style.display = "none";
     if (setupInfo.location !== "N/A") weather(setupInfo.location);
     readOut("Access granted. Welcome sir.");
-    
+
     autoFriday(); // start voice recognition now
-  } 
-  
-  
+  }
+
+
   else {
     attemptsLeft--;
     if (attemptsLeft <= 0) {
@@ -265,7 +265,7 @@ function userInfo() {
           blockPage();
         }
       });
-    } 
+    }
     else {
       alert(`Password incorrect. ${attemptsLeft} attempt${attemptsLeft > 1 ? "s" : ""} left.`);
       readOut(`Password incorrect. ${attemptsLeft} attempt${attemptsLeft > 1 ? "s" : ""} left.`);
@@ -317,39 +317,39 @@ recognition.onend = () => {
 
 // Camera functions
 function openCamera() {
-    if (cameraStream) {
-        readOut("Camera is already open, sir.");
-        return;
-    }
+  if (cameraStream) {
+    readOut("Camera is already open, sir.");
+    return;
+  }
 
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-            cameraStream = stream;
-            const video = document.createElement("video");
-            video.id = "camera-preview";
-            video.srcObject = stream;
-            video.autoplay = true;
-            video.style.position = "fixed";
-            video.style.top = "150px";
-            video.style.left = "150px";
-            video.style.width = "300px";
-            video.style.zIndex = "9999";
-            document.body.appendChild(video);
-            readOut("Camera activated, sir.");
-        })
-        .catch(() => readOut("Camera permission denied."));
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+      cameraStream = stream;
+      const video = document.createElement("video");
+      video.id = "camera-preview";
+      video.srcObject = stream;
+      video.autoplay = true;
+      video.style.position = "fixed";
+      video.style.top = "150px";
+      video.style.left = "150px";
+      video.style.width = "300px";
+      video.style.zIndex = "9999";
+      document.body.appendChild(video);
+      readOut("Camera activated, sir.");
+    })
+    .catch(() => readOut("Camera permission denied."));
 }
 
 function closeCamera() {
-    if (cameraStream) {
-        cameraStream.getTracks().forEach(track => track.stop());
-        cameraStream = null;
-        const video = document.getElementById("camera-preview");
-        if (video) video.remove();
-        readOut("Camera closed, sir.");
-    } else {
-        readOut("No camera is open, sir.");
-    }
+  if (cameraStream) {
+    cameraStream.getTracks().forEach(track => track.stop());
+    cameraStream = null;
+    const video = document.getElementById("camera-preview");
+    if (video) video.remove();
+    readOut("Camera closed, sir.");
+  } else {
+    readOut("No camera is open, sir.");
+  }
 }
 
 
@@ -368,62 +368,62 @@ recognition.onresult = function (event) {
   if (transcript.includes("close this")) {
     document.querySelector(".commands").style.display = "none";
     document.querySelector(".temp").style.display = "none";
-         closeCamera();
+    closeCamera();
     readOut("Closing popups sir");
   }
 
   if (transcript.includes("activate static mode")) {
-        readOut("Static mode activated. Voice recognition is now off.");
-         recognition.stop();
-        windowsB.forEach(win => win.close());
-        closeCamera();
- 
-        windowsB = [];
-    }
+    readOut("Static mode activated. Voice recognition is now off.");
+    recognition.stop();
+    windowsB.forEach(win => win.close());
+    closeCamera();
 
-if (transcript.includes("shutdown friday")) {
-  const message = "Shutting down completely. Goodbye sir.";
+    windowsB = [];
+  }
 
-  // Load voices first
-  const speakWithZira = (text, callback) => {
-    const voices = speechSynthesis.getVoices();
-    let zira = voices.find(v => v.name.includes("Zira"));
+  if (transcript.includes("shutdown friday")) {
+    const message = "Shutting down completely. Goodbye sir.";
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    if (zira) utterance.voice = zira;
+    // Load voices first
+    const speakWithZira = (text, callback) => {
+      const voices = speechSynthesis.getVoices();
+      let zira = voices.find(v => v.name.includes("Zira"));
 
-    utterance.onend = () => {
-      if (callback) callback();
+      const utterance = new SpeechSynthesisUtterance(text);
+      if (zira) utterance.voice = zira;
+
+      utterance.onend = () => {
+        if (callback) callback();
+      };
+
+      speechSynthesis.speak(utterance);
     };
 
-    speechSynthesis.speak(utterance);
-  };
-
-  // Ensure voices are loaded before calling speak
-  const loadVoicesThenSpeak = () => {
-    if (speechSynthesis.getVoices().length === 0) {
-      speechSynthesis.onvoiceschanged = () => {
+    // Ensure voices are loaded before calling speak
+    const loadVoicesThenSpeak = () => {
+      if (speechSynthesis.getVoices().length === 0) {
+        speechSynthesis.onvoiceschanged = () => {
+          speakWithZira(message, shutdownFriday);
+        };
+      } else {
         speakWithZira(message, shutdownFriday);
-      };
-    } else {
-      speakWithZira(message, shutdownFriday);
-    }
-  };
+      }
+    };
 
-  const shutdownFriday = () => {
-    const isWindows = navigator.platform.toLowerCase().includes("win");
-    if (isWindows) {
-      window.open('', '_self').close();
-      setTimeout(() => {
-        window.location.href = "about:blank";
-      }, 1500);
-    } else {
-      blockPage();
-    }
-  };
+    const shutdownFriday = () => {
+      const isWindows = navigator.platform.toLowerCase().includes("win");
+      if (isWindows) {
+        window.open('', '_self').close();
+        setTimeout(() => {
+          window.location.href = "about:blank";
+        }, 1500);
+      } else {
+        blockPage();
+      }
+    };
 
-  loadVoicesThenSpeak();
-}
+    loadVoicesThenSpeak();
+  }
 
 
 
@@ -431,7 +431,7 @@ if (transcript.includes("shutdown friday")) {
 
   // userdata access commands
 
-  if (transcript.includes("what's my name") || transcript.includes("what is my name")&& userInfo) {
+  if (transcript.includes("what's my name") || transcript.includes("what is my name") && userInfo) {
     readOut(`Sir, I know that you are ${userInfo.name}`);
   }
   if (transcript.includes("what's my bio") || transcript.includes("what is my bio") && userInfo) {
@@ -502,8 +502,8 @@ if (transcript.includes("shutdown friday")) {
       "sir, i am Friday, a voice assistant made for browsers using javascript . I can do anything which can be done from a browser."
     );
   }
-
  
+
 
   // IMPROVED SEARCH WITH VOICE CONFIRMATION
 
@@ -558,51 +558,47 @@ if (transcript.includes("shutdown friday")) {
   }
 
   // userdata access commands
- if (userInfo) {
-  if (transcript.includes("what is my name")) {
-    readOut(`Sir, I know that you are ${userInfo.name}`);
-  }
+  if (userInfo) {
+    if (transcript.includes("what is my name")) {
+      readOut(`Sir, I know that you are ${userInfo.name}`);
+    }
 
-  if (transcript.includes("what is my bio")) {
-    readOut(`Sir, I know that you are ${userInfo.bio}`);
-  }
+    if (transcript.includes("what is my bio")) {
+      readOut(`Sir, I know that you are ${userInfo.bio}`);
+    }
 
-  // Instagram
-  if (transcript.includes("open my instagram profile")) {
-    readOut("Opening your Instagram profile sir");
-    let a = window.open("https://www.instagram.com/tanmaykhule1feb/");
-    if (a) windowsB.push(a);
-  } else if (transcript.includes("open instagram profile")) {
-    readOut("Opening Instagram profile sir");
-    let a = window.open(`https://www.instagram.com/${userInfo.instagram}`);
-    if (a) windowsB.push(a);
-  } else if (transcript.includes("open instagram")) {
-    readOut("Opening Instagram sir");
-    let a = window.open("https://www.instagram.com/");
-    if (a) windowsB.push(a);
-  }
-
-  // LinkedIn
-  if (transcript.includes("open my linkedin profile")) {
-    readOut("Opening your LinkedIn profile sir");
-    let a = window.open("https://www.linkedin.com/in/tanmay-khule-523705250/");
-    if (a) windowsB.push(a);
-  } else if (transcript.includes("open linkedin profile")) {
-    readOut("Opening LinkedIn profile sir");
-    let a = window.open(`https://www.linkedin.com/in/${userInfo.linkedin}`);
-    if (a) windowsB.push(a);
-  } else if (transcript.includes("open linkedin")) {
-    readOut("Opening LinkedIn sir");
-    let a = window.open("https://www.linkedin.com/");
-    if (a) windowsB.push(a);
-  }
-
-  // GitHub
-if (transcript.includes("open my github profile")) {
-      readOut("Opening your github profile sir");
-      let a = window.open("https://github.com/tmk798");
+    // Instagram
+    if (transcript.includes("open my instagram profile")) {
+      readOut("Opening your Instagram profile sir");
+      let a = window.open("https://www.instagram.com/tanmaykhule1feb/");
       if (a) windowsB.push(a);
-    } else if (transcript.includes("open github profile")) {
+    } else if (transcript.includes("open instagram profile")) {
+      readOut("Opening Instagram profile sir");
+      let a = window.open(`https://www.instagram.com/${userInfo.instagram}`);
+      if (a) windowsB.push(a);
+    } else if (transcript.includes("open instagram")) {
+      readOut("Opening Instagram sir");
+      let a = window.open("https://www.instagram.com/");
+      if (a) windowsB.push(a);
+    }
+
+    // LinkedIn
+    if (transcript.includes("open my linkedin profile")) {
+      readOut("Opening your LinkedIn profile sir");
+      let a = window.open("https://www.linkedin.com/in/tanmay-khule-523705250/");
+      if (a) windowsB.push(a);
+    } else if (transcript.includes("open linkedin profile")) {
+      readOut("Opening LinkedIn profile sir");
+      let a = window.open(`https://www.linkedin.com/in/${userInfo.linkedin}`);
+      if (a) windowsB.push(a);
+    } else if (transcript.includes("open linkedin")) {
+      readOut("Opening LinkedIn sir");
+      let a = window.open("https://www.linkedin.com/");
+      if (a) windowsB.push(a);
+    }
+
+    // GitHub
+     if (transcript.includes("open github profile")) {
       readOut("Opening github profile sir");
       let a = window.open(`https://github.com/${userInfo.github}`);
       if (a) windowsB.push(a);
@@ -611,19 +607,21 @@ if (transcript.includes("open my github profile")) {
       let a = window.open("https://github.com/");
       if (a) windowsB.push(a);
     }
-}
+  }
 
 
-     if (transcript.includes("open leetcode") || transcript.includes("open leet code")) {
-        readOut("Opening LeetCode sir");
-        window.open("https://leetcode.com/");
-    }
+  if (transcript.includes("open leetcode") || transcript.includes("open leet code")) {
+    readOut("Opening LeetCode sir");
+    let a = window.open("https://leetcode.com/");
+    if (a) windowsB.push(a);
+  }
 
-    // GeeksForGeeks command (fixed variations)
-    if (transcript.includes("open geeksforgeeks") || transcript.includes("open g f g")) {
-        readOut("Opening GeeksForGeeks sir");
-        window.open("https://www.geeksforgeeks.org/");
-    }
+  // GeeksForGeeks command (fixed variations)
+  if (transcript.includes("open geeksforgeeks") || transcript.includes("open g f g")) {
+    readOut("Opening GeeksForGeeks sir");
+    let a = window.open("https://www.geeksforgeeks.org/");
+    if (a) windowsB.push(a);
+  }
 
   if (transcript.includes("open chatgpt") || transcript.includes("open chat gpt")) {
     readOut("Opening chat gpt sir");
@@ -642,26 +640,31 @@ if (transcript.includes("open my github profile")) {
     let a = window.open("https://web.whatsapp.com/");
     if (a) windowsB.push(a);
   }
-
-      // Camera commands
-    if (transcript.includes("open camera")) {
-        openCamera();
+//github
+if (transcript.includes("open my github profile")) {
+      readOut("Opening your github profile sir");
+      window.open("https://github.com/tmk798");
+      if (a) windowsB.push(a);
     }
+  // Camera commands
+  if (transcript.includes("open camera")) {
+    openCamera();
+  }
 
-    if (transcript.includes("close camera")) {
-        closeCamera();
-    }
+  if (transcript.includes("close camera")) {
+    closeCamera();
+  }
 
-    // Calculation command
-    if (transcript.includes("calculate")) {
-        const expr = transcript.replace("calculate", "").trim();
-        try {
-            const result = eval(expr);
-            readOut(`The result is ${result}`);
-        } catch (e) {
-            readOut("Sorry, that expression could not be calculated.");
-        }
+  // Calculation command
+  if (transcript.includes("calculate")) {
+    const expr = transcript.replace("calculate", "").trim();
+    try {
+      const result = eval(expr);
+      readOut(`The result is ${result}`);
+    } catch (e) {
+      readOut("Sorry, that expression could not be calculated.");
     }
+  }
   //folder creation
   // === Folder Creation ===
   if (transcript.includes("create folder")) {
@@ -684,17 +687,17 @@ if (transcript.includes("open my github profile")) {
   }
 
   // close all opened tabs - FIXED
-   if (transcript.includes("close all tabs")) {
-        readOut("Closing all tabs sir");
-        windowsB.forEach(win => {
-            try {
-                if (win && !win.closed) win.close();
-            } catch (error) {
-                console.error("Error closing window:", error);
-            }
-        });
-        windowsB = [];
-    }
+  if (transcript.includes("close all tabs")) {
+    readOut("Closing all tabs sir");
+    windowsB.forEach(win => {
+      try {
+        if (win && !win.closed) win.close();
+      } catch (error) {
+        console.error("Error closing window:", error);
+      }
+    });
+    windowsB = [];
+  }
 
 
   // news commands - PLACEHOLDER IMPLEMENTATIONS
