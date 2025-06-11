@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css" />
+  <title>F R I D A Y</title>
+</head>
+<body>
+  <h1>Friday</h1>
+<audio src="/img/power up.mp3" id="turn_on" ></audio>
+<!-- <audio src="/public/img/video introsound.mp3" id="friday_intro" preload="auto"></audio> -->
+  <div class="machine">
+
+<div class="clock cont">
+  <img src="/img/clock1.png" class="icon">
+  <p id="time"></p>
+  <div id="date"></div>
+</div>
+<div class="internet cont">
+  <img src="/img/internet1.png" class="icon">
+  <p id="internet"></p>
+</div>
+
+<div class="battery cont">
+  <img src="/img/battery1.png" class="icon">
+  <p id="battery"></p>
+</div>
+
+    <div class="temp">
+      <p id="location"></p>
+      <p id="country"></p>
+      <p id="weatherT"></p>
+      <p id="weatherD"></p>
+      <img src="" id="weatherIcon" />
+      <p id="oTemp"></p>
+      <p id="feelLikeTemp"></p>
+      <p id="minT"></p>
+      <p id="maxT"></p>
+     </div>
+ <img src="/img/undefined - Imgur (1).gif" id="ironman">
+<img src="/img/heart.gif" id="arc-reactor">
+  </div> 
+
+   <div id="start_friday_btn" title="Start FRIDAY"> 
+  <img src="/img/hologram.gif" alt="start">
+<div id="stop_friday_btn" title="Stop FRIDAY"> 
+  <img src="/img/hologram.gif" alt="stop">
+</div> 
+
+</div>
+  <div class="friday_setup in_middle">
+   <div id="head">
+     <h1>Admin Details</h1>
+     
+  </div> 
+<label>Your Name</label>
+<input type="text" placeholder="Enter your name">
+<br>
+<label>Your Bio</label>
+<input type="text" placeholder="Write a short bio">
+<br>
+<label>Your Location</label>
+<input type="text" placeholder="Enter your city or country">
+<br>
+<label>Instagram Profile</label>
+<input type="text" placeholder="Instagram username or URL">
+<br>
+<label>Github Profile</label>
+<input type="text" placeholder="Github username or URL">
+<br>
+<label>LinkedIn Profile</label>
+<input type="text" placeholder="LinkedIn username or URL">
+<br>
+
+<label>Admin Password</label>
+<input type="password" placeholder="Enter Password" />
+<br>
+
+    <button id="sub_btn">Submit</button>
+  </div>
+
+  
+<div class="messages"></div>
+ <div class="commands in_middle"></div> 
+ 
+
+<button id="start"style="display:none;">Activate VR</button>
+  <button id="stop"style="display:none;">Deactivate VR</button>
+  <button id="speak"style="display:none;">Speak Out</button>
+
+ 
+
+
+  <script src="./app.js"></script>
+  <noscript>You need JavaScript for this app</noscript>
+</body>
+</html>

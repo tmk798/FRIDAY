@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    position: fixed;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', sans-serif;
+}
+
+button {
+    color: black;
+    top: 50%;
+    left: 50%;
+}
+
+label {
+    color: rgb(163, 0, 0);
+    text-align: left;
+
+}
+
+input {
+    color: black;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid black;
+    /* width: 60vw; */
+}
+
+#sub_btn {
+    background-color: red;
+    color: white;
+    width: 80px;
+    padding: 10px 5px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+
+}
+
+.machine {
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+}
+
+.machine * {
+    position: absolute;
+}
+
+#arc-reactor {
+    bottom: 0;
+    left: 0;
+}
+
+#ironman {
+    bottom: 0;
+    right: 0;
+}
+
+#time {
+    color: white;
+    top: 10px;
+   width: 50px;
+     margin-left: 5px;
+     font-size: small;
+
+    
+}
+
+
+#date {
+    color: white;
+    top: 10px;
+   width: 100px;
+     margin-left: 10px;
+     font-size: small;
+
+}
+.in_middle {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10000;
+    
+    width: 80vw;
+    height: 70vh;
+    overflow-y: auto;
+    
+    /* Smooth transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.in_middle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #121212;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 90vw;
+    max-width: 480px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-family: monospace, monospace;
+}
+
+.in_middle * {
+    position: static;
+    color: red;
+}
+
+/* Each label and input in vertical stack */
+.in_middle label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.in_middle input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 2px solid #ff6b6b;
+    background-color: #222;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Buttons styling */
+.in_middle button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.in_middle button:hover {
+    background: linear-gradient(45deg, #ff5252, #ff7979);
+}
+
+/* Scrollbar styling */
+.in_middle::-webkit-scrollbar {
+    width: 8px;
+    display: block;
+}
+
+.in_middle::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.in_middle::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.in_middle::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #ff5252, #ff7979);
+}
+
+
+.icon {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    padding: 3px;
+    background-color: white;
+    border-radius: 50%;
+
+}
+
+.cont * {
+    position: static;
+}
+
+.cont {
+    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+}
+
+.battery {
+    left: 50%;
+    width: 100px;
+    transform: translateX(-50%);
+
+    
+}
+/* #battery{
+     margin-left: 10px;
+} */
+
+
+.clock {
+    width: 180px;
+     margin-left: 10px;
+
+}
+
+.internet {
+    top: 100px;
+    left: 10px;
+    width: 120px;
+}
+
+.temp {
+    top: 10px;
+    right: 10px;      /* Add this */
+    position: fixed;  /* or absolute */
+    text-align: right;
+    font-size: smaller;
+}
+
+
+.temp * {
+    position: static;
+}
+
+.messages {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-height: 600px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+    z-index: 1000;
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
+}
+.usermesg{
+    text-align: right;
+    width: 300px;
+    color: rgb(113,113,235);
+}
+.jmssg{
+    text-align: left;
+    margin-top:5px;
+    width:300px;
+    color:rgb(245,61,61);
+}
+
+.commands {
+  display: block;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+
+.commands p {
+    color:rgb(197, 0, 0);
+}
+
+
+#start_friday_btn {
+    position: fixed;
+    top: 430px;        /* same top as stop button */
+    left: 300px;       /* shifted right */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+}
+
+#stop_friday_btn {
+    position: fixed;
+    bottom: 680px;        /* same top as start button */
+    left: 520px;       /* left aligned */
+    display: flex;
+    align-items: center;
+    z-index: 9999;
+    /* Removed bottom */
+}
+
+#start_friday_btn img,
+#stop_friday_btn img {
+    height: 350px;     /* smaller images for horizontal fit */
+}
+
+/* Make sure the heading is visible and styled */
+#head h1 {
+  position: static;   /* override any fixed positioning */
+  color: white;         /* visible color */
+  font-size: 2rem;    /* bigger font */
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
