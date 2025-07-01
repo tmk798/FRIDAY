@@ -30,18 +30,13 @@ let cameraStream = null; // Track camera stream
 
 // Weather Setup
 let lastWeatherData = null; // Store weather data globally
-
 function weather(location) {
   const weatherCont = document.querySelector(".temp").querySelectorAll("*");
-  let url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=48ddfe8c9cf29f95b7d0e54d6e171008`;
-  const xhr = new XMLHttpRequest();
 
-  xhr.open("GET", url, true);
-  xhr.onload = function () {
-    if (this.status === 200) {
-      let data = JSON.parse(this.responseText);
-      lastWeatherData = data; // Store for later use
-
+  // Call the backend instead of the weather API directly
+  fetch(`/weather?q=${location}`)
+    .then((res) => res.json())
+    .then((data) => {
       weatherCont[0].textContent = `Location : ${data.name}`;
       weatherCont[1].textContent = `Country : ${data.sys.country}`;
       weatherCont[2].textContent = `Weather type : ${data.weather[0].main}`;
@@ -51,11 +46,10 @@ function weather(location) {
       weatherCont[6].textContent = `feels like ${ktc(data.main.feels_like)}`;
       weatherCont[7].textContent = `Min temperature ${ktc(data.main.temp_min)}`;
       weatherCont[8].textContent = `Max temperature ${ktc(data.main.temp_max)}`;
-    } else {
+    })
+    .catch(() => {
       weatherCont[0].textContent = "Weather info not found";
-    }
-  };
-  xhr.send();
+    });
 }
 
 function ktc(k) {
